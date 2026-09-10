@@ -59,7 +59,7 @@
                 <td><?php echo htmlspecialchars($booking["destination"]); ?></td>
                 <td>
                     <?php if ((float)$booking["fare"] > 500) { ?>
-                    <font color="red"><b>R <?php echo number_format((float)$booking["fare"], 2); ?></b></font>
+                    <span style="color:red"><b>R <?php echo number_format((float)$booking["fare"], 2); ?></b></span>
                     <?php } else { ?>
                         R <?php echo number_format((float)$booking["fare"], 2); ?>
                     <?php } ?>
