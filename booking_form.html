@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookings</title>
+</head>
+<body>
+    <h1>Passanger Booking Form</h1>
+    <form action="bookings.php" method="POST">
+        <table class="form-table">
+            <tr>
+                <td><label for="name">Passanger Name:</label></td>
+                <td><input type="text" id="name" name="name" placeholder="John"></td>
+            </tr>
+            <tr>
+                <td><label for="destination">Destination:</label></td>
+                <td><input type="text" id="destination" name="destination" placeholder="Johannesburg"></td>
+            </tr>
+
+            <tr>
+                <td><label for="fare">Fare:</label></td>
+                <td><input type="number" id="fare" name="fare" min="1"></td>
+            </tr>
+
+            <tr>
+                <td><input type="submit" name="action" value="Add Booking"></td> <br>
+            </tr>
+        </table><br>
+        <a href="view_bookings.php">View All Bookings</a><br><br>
+        <a href="search.php">Search by Destination</a><br><br>
+        <a href="backup.php">Export to CSV</a>
+    </form>
+</body>
+</html>
