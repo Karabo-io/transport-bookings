@@ -1,7 +1,9 @@
 <?php
     require_once "database_config.php";
 
-    $result = $conn->query("SELECT id, passenger_name, destination, fare, created_at FROM bookings ORDER BY id ASC");
+    $result = $conn->query("SELECT id, passenger_name, destination, fare, created_at 
+        FROM bookings  
+        ORDER BY id ASC");
 
     $bookings = array();
     $total_fare = 0;
