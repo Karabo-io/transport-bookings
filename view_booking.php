@@ -18,15 +18,13 @@ if (!$stmt) {
     die("Database error. <a href='view_bookings.php'>Return to bookings</a>");
 }
 
-$stmt->bind_param("i", $id);
-$stmt->execute();
-$result = $stmt->get_result();
+$stmt->execute([$id]);
 
-if ($result->num_rows === 0) {
+if ($stmt->rowCount() === 0) {
     die("Booking not found. <a href='view_bookings.php'>Return to bookings</a>");
 }
 
-$booking = $result->fetch_assoc();
+$booking = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html>
@@ -50,6 +48,5 @@ $booking = $result->fetch_assoc();
 </body>
 </html>
 <?php
-$stmt->close();
-$conn->close();
+$conn = null;
 ?>

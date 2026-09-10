@@ -17,17 +17,12 @@
             ORDER BY id ASC"
         );
 
+ 
         if ($stmt) {
-            $stmt->bind_param("s", $search_term);
-            $stmt->execute();
-            $result = $stmt->get_result();
-
-            while ($row = $result->fetch_assoc()) {
-                $bookings[] = $row;
-            }
-
-            $stmt->close();
+            $stmt->execute([$search_term]);
+            $bookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
+
     }
 
 ?>
@@ -90,9 +85,9 @@
 
     <?php } ?>
 
-    <p><a href="index.php">Add a Booking</a></p>
+    <p><a href="booking_form.html">Add a Booking</a></p>
     <p><a href="view_bookings.php">View All Bookings</a></p>
-    <p><a href="summary_report.php">Summary Report</a></p>
+    <p><a href="summary.php">Summary Report</a></p>
 </body>
 </html>
-<?php $conn->close(); ?>
+<?php $conn = null; ?>

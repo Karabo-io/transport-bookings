@@ -1,38 +1,32 @@
 <?php
-// summary_report.php
-// Calculates total, average and highest fare using an array and loops.
+    // summary_report.php
+    // Calculates total, average and highest fare using an array and loops.
 
-require_once "database.php";
+    require_once "database_config.php";
 
-$result = $conn->query(
-    "SELECT passenger_name, destination, fare
-     FROM bookings
-     ORDER BY id ASC"
-);
+    $stmt = $conn->query(
+        "SELECT passenger_name, destination, fare
+        FROM bookings
+        ORDER BY id ASC"
+    );
 
-$bookings = array();
-$total_fare = 0;
-$highest_fare = 0;
-$highest_booking = null;
+    $bookings = $stmt ? $stmt->fetchAll(PDO::FETCH_ASSOC) : array();
+    $total_fare = 0;
+    $highest_fare = 0;
+    $highest_booking = null;
 
-if ($result) {
-    while ($row = $result->fetch_assoc()) {
-        $bookings[] = $row;
+    foreach ($bookings as $booking) {
+        $fare = (float)$booking["fare"];
+        $total_fare += $fare;
+
+        if ($highest_booking === null || $fare > $highest_fare) {
+            $highest_fare = $fare;
+            $highest_booking = $booking;
+        }
     }
-}
 
-foreach ($bookings as $booking) {
-    $fare = (float)$booking["fare"];
-    $total_fare += $fare;
-
-    if ($highest_booking === null || $fare > $highest_fare) {
-        $highest_fare = $fare;
-        $highest_booking = $booking;
-    }
-}
-
-$count = count($bookings);
-$average_fare = $count > 0 ? $total_fare / $count : 0;
+    $count = count($bookings);
+    $average_fare = $count > 0 ? $total_fare / $count : 0;
 ?>
 <!DOCTYPE html>
 <html>
@@ -60,10 +54,10 @@ $average_fare = $count > 0 ? $total_fare / $count : 0;
 
 <?php } ?>
 
-<p><a href="index.php">Add a Booking</a></p>
+<p><a href="booking_form.html">Add a Booking</a></p>
 <p><a href="view_bookings.php">View All Bookings</a></p>
-<p><a href="search_bookings.php">Search Bookings</a></p>
+<p><a href="search.php">Search Bookings</a></p>
 
 </body>
 </html>
-<?php $conn->close(); ?>
+<?php $conn = null; ?>

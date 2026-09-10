@@ -41,15 +41,16 @@
     $db_pass = $_ENV["DB_PASS"];
 
     try{
-        $conn = new PDO("mysql:host=$db_host;port=$db_port;dbname=$db_name", $db_user, $db_pass);
+        $conn = new PDO("mysql:host=$db_host;port=$db_port;dbname=$db_name;charset=utf8mb4", $db_user, $db_pass);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     } catch (PDOException $e) {
-        echo "Error: " . $e->getMessage();
+        die("Database connection failed.");
     }
     
 
-    if ($conn->connect_error) {
-        die("Database connection failed.");
-    }
+    // if ($conn->connect_error) {
+    //     die("Database connection failed.");
+    // }
 
-    $conn->set_charset("utf9mb4");
+    //$conn->set_charset("utf9mb4");
 ?>
