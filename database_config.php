@@ -1,7 +1,7 @@
 <?php
 
     /**Loads MySQL settings from the .env file.
-     * Refer to .env.example for config reference
+    * Refer to .env.example for config reference
     * No database password is written directly into the phph source code
     */
 
@@ -40,7 +40,12 @@
     $db_user = $_ENV["DB_USER"];
     $db_pass = $_ENV["DB_PASS"];
 
-    $conn = new PDO("mysql:host=$db_host;port=$db_port;dbname=$db_name", $db_name, $db_pass);
+    try{
+        $conn = new PDO("mysql:host=$db_host;port=$db_port;dbname=$db_name", $db_user, $db_pass);
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
+    
 
     if ($conn->connect_error) {
         die("Database connection failed.");
