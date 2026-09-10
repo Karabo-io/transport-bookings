@@ -78,8 +78,8 @@
 
     <?php } ?>
 
-    <p><a href="index.php">Add a Booking</a></p>
-    <p><a href="search_bookings.php">Search Bookings</a></p>
+    <p><a href="booking_form.html">Add a Booking</a></p>
+    <p><a href="search.php">Search by Destination</a></p>
     <p><a href="summary_report.php">Summary Report</a></p>
 
 </body>

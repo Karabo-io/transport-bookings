@@ -11,23 +11,23 @@
 
     $passager_name = trim($_POST["name"] ?? "");
     $destination = trim($_POST["destination"]);
-    $fare = trim($_POST["fare"]);
+    $fare_input= trim($_POST["fare"]);
 
     /** Input sanitisation */
     $passager_name = strip_tags($passager_name);
     $destination = strip_tags($destination);
 
-    if ($passager_name === "" || $destination === "" || $fare === "") {
+    if ($passager_name === "" || $destination === "" || $fare_input === "") {
         $message = "Error: All fields are required.";
         $message_type = "error";
-    } elseif (!is_numeric($fare) || (float)$fare <= 0) {
+    } elseif (!is_numeric($fare_input) || (float)$fare_input <= 0) {
         $message = "Error: Fare must be a valid number grater than 0.";
         $message_type = "error";
     } elseif (strlen($passager_name) > 100 || strlen($destination) > 100) {
         $message = "Error: Passanger name and destination must not exceed 100 characters.";
         $message_type = "error";
     } else{
-        $fare_input = (float)$fare;
+        $fare = (float)$fare_input;
 
         /** Prepared statement protects the query freom SQL Injection */
         $duplicates_stmt = $conn->prepare("SELECT id FROM bookings WHERE passanger_name = ? AND destination = ? AND fare = ? LIMIT 1");
@@ -86,7 +86,7 @@
 
     <p><a href="index.php">Back to Booking Form</a></p>
     <p><a href="view_bookings.php">View All Bookings</a></p>
-    <p><a href="search_bookings.php">Search Bookings</a></p>
+    <p><a href="search_bookings.php">Search by Destination</a></p>
         
 </body>
 </html>

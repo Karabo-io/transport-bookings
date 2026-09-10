@@ -1,0 +1,6 @@
+ID: 1 | Passenger: Alice Nkosi | Destination: Cape Town | Fare: 450.00
+ID: 2 | Passenger: Thabo Mokoena | Destination: Durban | Fare: 650.00
+ID: 3 | Passenger: Chantelle Smith | Destination: Pretoria | Fare: 350.00
+ID: 4 | Passenger: David Molefe | Destination: Cape Town | Fare: 550.00
+ID: 5 | Passenger: Lerato Dlamini | Destination: Johannesburg | Fare: 300.00
+ID: 6 | Passenger: Mpho Khumalo | Destination: Durban | Fare: 700.00
