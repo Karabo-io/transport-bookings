@@ -13,6 +13,7 @@ CREATE TABLE bookings (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Sample data
 INSERT INTO bookings (passenger_name, destination, fare) VALUES
 ('Alice Nkosi', 'Cape Town', 450.00),
 ('Thabo Mokoena', 'Durban', 650.00),
